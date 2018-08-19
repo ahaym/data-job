@@ -1,0 +1,1310 @@
+
+==================== Tidy Core ====================
+2018-08-19 04:23:00.459736634 UTC
+
+Result size of Tidy Core
+  = {terms: 382, types: 955, coercions: 334, joins: 0/4}
+
+-- RHS size: {terms: 12, types: 19, coercions: 4, joins: 0/0}
+lvl_r5bR
+  :: forall (t :: * -> *) r a b.
+     (a -> b) -> Job t r a -> t r -> r -> b
+[GblId,
+ Arity=4,
+ Caf=NoCafRefs,
+ Str=<C(S),1*C1(U)><L,1*C1(C1(U))><L,U><L,U>]
+lvl_r5bR
+  = \ (@ (t_X3K7 :: * -> *))
+      (@ r_X3K9)
+      (@ a_X3Kg)
+      (@ b_X3Ki)
+      (f_XJu :: a_X3Kg -> b_X3Ki)
+      (ds_X3Mx :: Job t_X3K7 r_X3K9 a_X3Kg)
+      (rows_aIJ :: t_X3K7 r_X3K9)
+      (row2_aIK :: r_X3K9) ->
+      f_XJu
+        ((ds_X3Mx
+          `cast` (Job.N:Job[0] <t_X3K7>_R <r_X3K9>_N <a_X3Kg>_R
+                  :: (Job t_X3K7 r_X3K9 a_X3Kg :: *)
+                     ~R#
+                     ((t_X3K7 r_X3K9 -> r_X3K9 -> a_X3Kg) :: *)))
+           rows_aIJ row2_aIK)
+
+-- RHS size: {terms: 9, types: 18, coercions: 0, joins: 0/0}
+lvl1_r5bS
+  :: forall r (t :: * -> *) a b. a -> Job t r b -> t r -> r -> a
+[GblId, Arity=4, Caf=NoCafRefs, Str=<S,1*U><L,A><L,A><L,A>]
+lvl1_r5bS
+  = \ (@ r_X3K9)
+      (@ (t_X3K7 :: * -> *))
+      (@ a_X3KK)
+      (@ b_X3KM)
+      (x_a3M6 :: a_X3KK)
+      _ [Occ=Dead]
+      _ [Occ=Dead]
+      _ [Occ=Dead] ->
+      x_a3M6
+
+-- RHS size: {terms: 5, types: 13, coercions: 37, joins: 0/0}
+lvl2_r5bT :: forall (t :: * -> *) r. Functor (Job t r)
+[GblId, Caf=NoCafRefs, Str=m]
+lvl2_r5bT
+  = \ (@ (t_X3K7 :: * -> *)) (@ r_X3K9) ->
+      GHC.Base.C:Functor
+        @ (Job t_X3K7 r_X3K9)
+        ((lvl_r5bR @ t_X3K7 @ r_X3K9)
+         `cast` (forall (a_X3Ki :: <*>_N).
+                 forall (b_X3Kk :: <*>_N).
+                 <a_X3Ki -> b_X3Kk>_R
+                 -> <Job t_X3K7 r_X3K9 a_X3Ki>_R
+                 -> Sym (Job.N:Job[0] <t_X3K7>_R <r_X3K9>_N <b_X3Kk>_R)
+                 :: ((forall a b.
+                      (a -> b)
+                      -> Job t_X3K7 r_X3K9 a -> t_X3K7 r_X3K9 -> r_X3K9 -> b) :: *)
+                    ~R#
+                    ((forall a b.
+                      (a -> b) -> Job t_X3K7 r_X3K9 a -> Job t_X3K7 r_X3K9 b) :: *)))
+        ((lvl1_r5bS @ r_X3K9 @ t_X3K7)
+         `cast` (forall (a_X3KM :: <*>_N).
+                 forall (b_X3KO :: <*>_N).
+                 <a_X3KM>_R
+                 -> <Job t_X3K7 r_X3K9 b_X3KO>_R
+                 -> Sym (Job.N:Job[0] <t_X3K7>_R <r_X3K9>_N <a_X3KM>_R)
+                 :: ((forall a b.
+                      a -> Job t_X3K7 r_X3K9 b -> t_X3K7 r_X3K9 -> r_X3K9 -> a) :: *)
+                    ~R#
+                    ((forall a b.
+                      a -> Job t_X3K7 r_X3K9 b -> Job t_X3K7 r_X3K9 a) :: *)))
+
+-- RHS size: {terms: 4, types: 10, coercions: 0, joins: 0/0}
+Job.$fFunctorJob [InlPrag=CONLIKE]
+  :: forall (t :: * -> *) r. Functor t => Functor (Job t r)
+[GblId[DFunId],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<L,A>m,
+ Unf=DFun: \ (@ (t_aIF :: * -> *))
+             (@ r_aIG)
+             (v_B1 :: Functor t_aIF) ->
+       GHC.Base.C:Functor TYPE: Job t_aIF r_aIG
+                          (\ (@ a_X3Kg)
+                             (@ b_X3Ki)
+                             (f_XJu [Occ=Once!] :: a_X3Kg -> b_X3Ki)
+                             (ds_X3Mx [Occ=Once] :: Job t_aIF r_aIG a_X3Kg)
+                             (rows_aIJ [Occ=Once] :: t_aIF r_aIG)
+                             (row2_aIK [Occ=Once] :: r_aIG) ->
+                             f_XJu
+                               ((ds_X3Mx
+                                 `cast` (Job.N:Job[0] <t_aIF>_R <r_aIG>_N <a_X3Kg>_R
+                                         :: (Job t_aIF r_aIG a_X3Kg :: *)
+                                            ~R#
+                                            ((t_aIF r_aIG -> r_aIG -> a_X3Kg) :: *)))
+                                  rows_aIJ row2_aIK))
+                          `cast` (forall (a_X3Ki :: <*>_N).
+                                  forall (b_X3Kk :: <*>_N).
+                                  <a_X3Ki -> b_X3Kk>_R
+                                  -> <Job t_aIF r_aIG a_X3Ki>_R
+                                  -> Sym (Job.N:Job[0] <t_aIF>_R <r_aIG>_N <b_X3Kk>_R)
+                                  :: ((forall a b.
+                                       (a -> b)
+                                       -> Job t_aIF r_aIG a -> t_aIF r_aIG -> r_aIG -> b) :: *)
+                                     ~R#
+                                     ((forall a b.
+                                       (a -> b) -> Job t_aIF r_aIG a -> Job t_aIF r_aIG b) :: *))
+                          (\ (@ a_X3KK)
+                             (@ b_X3KM)
+                             (x_a3M6 [Occ=Once] :: a_X3KK)
+                             _ [Occ=Dead]
+                             _ [Occ=Dead]
+                             _ [Occ=Dead] ->
+                             x_a3M6)
+                          `cast` (forall (a_X3KM :: <*>_N).
+                                  forall (b_X3KO :: <*>_N).
+                                  <a_X3KM>_R
+                                  -> <Job t_aIF r_aIG b_X3KO>_R
+                                  -> Sym (Job.N:Job[0] <t_aIF>_R <r_aIG>_N <a_X3KM>_R)
+                                  :: ((forall a b.
+                                       a -> Job t_aIF r_aIG b -> t_aIF r_aIG -> r_aIG -> a) :: *)
+                                     ~R#
+                                     ((forall a b.
+                                       a -> Job t_aIF r_aIG b -> Job t_aIF r_aIG a) :: *))]
+Job.$fFunctorJob
+  = \ (@ (t_X3K7 :: * -> *)) (@ r_X3K9) _ [Occ=Dead] ->
+      lvl2_r5bT @ t_X3K7 @ r_X3K9
+
+-- RHS size: {terms: 15, types: 24, coercions: 9, joins: 0/0}
+Job.$fApplicativeJob2
+  :: forall (t :: * -> *) r.
+     Functor t =>
+     forall a b. Job t r (a -> b) -> Job t r a -> t r -> r -> b
+[GblId,
+ Arity=5,
+ Caf=NoCafRefs,
+ Str=<L,A><C(C(C(S))),1*C1(C1(C1(U)))><L,1*C1(C1(U))><L,U><L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=5,unsat_ok=True,boring_ok=False)
+         Tmpl= \ (@ (t_a3HP :: * -> *))
+                 (@ r_a3HQ)
+                 _ [Occ=Dead]
+                 (@ a_a3Ij)
+                 (@ b_a3Ik)
+                 (ds_d3LB [Occ=Once] :: Job t_a3HP r_a3HQ (a_a3Ij -> b_a3Ik))
+                 (ds1_d3LC [Occ=Once] :: Job t_a3HP r_a3HQ a_a3Ij)
+                 (rows_aID :: t_a3HP r_a3HQ)
+                 (row2_aIE :: r_a3HQ) ->
+                 (ds_d3LB
+                  `cast` (Job.N:Job[0] <t_a3HP>_R <r_a3HQ>_N <a_a3Ij -> b_a3Ik>_R
+                          :: (Job t_a3HP r_a3HQ (a_a3Ij -> b_a3Ik) :: *)
+                             ~R#
+                             ((t_a3HP r_a3HQ -> r_a3HQ -> a_a3Ij -> b_a3Ik) :: *)))
+                   rows_aID
+                   row2_aIE
+                   ((ds1_d3LC
+                     `cast` (Job.N:Job[0] <t_a3HP>_R <r_a3HQ>_N <a_a3Ij>_R
+                             :: (Job t_a3HP r_a3HQ a_a3Ij :: *)
+                                ~R#
+                                ((t_a3HP r_a3HQ -> r_a3HQ -> a_a3Ij) :: *)))
+                      rows_aID row2_aIE)}]
+Job.$fApplicativeJob2
+  = \ (@ (t_a3HP :: * -> *))
+      (@ r_a3HQ)
+      _ [Occ=Dead]
+      (@ a_a3Ij)
+      (@ b_a3Ik)
+      (ds_d3LB :: Job t_a3HP r_a3HQ (a_a3Ij -> b_a3Ik))
+      (ds1_d3LC :: Job t_a3HP r_a3HQ a_a3Ij)
+      (rows_aID :: t_a3HP r_a3HQ)
+      (row2_aIE :: r_a3HQ) ->
+      (ds_d3LB
+       `cast` (Job.N:Job[0] <t_a3HP>_R <r_a3HQ>_N <a_a3Ij -> b_a3Ik>_R
+               :: (Job t_a3HP r_a3HQ (a_a3Ij -> b_a3Ik) :: *)
+                  ~R#
+                  ((t_a3HP r_a3HQ -> r_a3HQ -> a_a3Ij -> b_a3Ik) :: *)))
+        rows_aID
+        row2_aIE
+        ((ds1_d3LC
+          `cast` (Job.N:Job[0] <t_a3HP>_R <r_a3HQ>_N <a_a3Ij>_R
+                  :: (Job t_a3HP r_a3HQ a_a3Ij :: *)
+                     ~R#
+                     ((t_a3HP r_a3HQ -> r_a3HQ -> a_a3Ij) :: *)))
+           rows_aID row2_aIE)
+
+-- RHS size: {terms: 18, types: 28, coercions: 8, joins: 0/0}
+Job.$fApplicativeJob1
+  :: forall (t :: * -> *) r.
+     Functor t =>
+     forall a b c.
+     (a -> b -> c) -> Job t r a -> Job t r b -> t r -> r -> c
+[GblId,
+ Arity=6,
+ Caf=NoCafRefs,
+ Str=<L,A><C(C(S)),1*C1(C1(U))><L,1*C1(C1(U))><L,1*C1(C1(U))><L,U><L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=6,unsat_ok=True,boring_ok=False)
+         Tmpl= \ (@ (t_X3JO :: * -> *))
+                 (@ r_X3IO)
+                 _ [Occ=Dead]
+                 (@ a_a3IC)
+                 (@ b_a3ID)
+                 (@ c_a3IE)
+                 (f1_a3Mv [Occ=Once!] :: a_a3IC -> b_a3ID -> c_a3IE)
+                 (x_a3Mw [Occ=Once] :: Job t_X3JO r_X3IO a_a3IC)
+                 (eta_X1d [Occ=Once] :: Job t_X3JO r_X3IO b_a3ID)
+                 (eta1_B2 :: t_X3JO r_X3IO)
+                 (eta2_B1 :: r_X3IO) ->
+                 f1_a3Mv
+                   ((x_a3Mw
+                     `cast` (Job.N:Job[0] <t_X3JO>_R <r_X3IO>_N <a_a3IC>_R
+                             :: (Job t_X3JO r_X3IO a_a3IC :: *)
+                                ~R#
+                                ((t_X3JO r_X3IO -> r_X3IO -> a_a3IC) :: *)))
+                      eta1_B2 eta2_B1)
+                   ((eta_X1d
+                     `cast` (Job.N:Job[0] <t_X3JO>_R <r_X3IO>_N <b_a3ID>_R
+                             :: (Job t_X3JO r_X3IO b_a3ID :: *)
+                                ~R#
+                                ((t_X3JO r_X3IO -> r_X3IO -> b_a3ID) :: *)))
+                      eta1_B2 eta2_B1)}]
+Job.$fApplicativeJob1
+  = \ (@ (t_X3JO :: * -> *))
+      (@ r_X3IO)
+      _ [Occ=Dead]
+      (@ a_a3IC)
+      (@ b_a3ID)
+      (@ c_a3IE)
+      (f1_a3Mv :: a_a3IC -> b_a3ID -> c_a3IE)
+      (x_a3Mw :: Job t_X3JO r_X3IO a_a3IC)
+      (eta_X1d :: Job t_X3JO r_X3IO b_a3ID)
+      (eta1_B2 :: t_X3JO r_X3IO)
+      (eta2_B1 :: r_X3IO) ->
+      f1_a3Mv
+        ((x_a3Mw
+          `cast` (Job.N:Job[0] <t_X3JO>_R <r_X3IO>_N <a_a3IC>_R
+                  :: (Job t_X3JO r_X3IO a_a3IC :: *)
+                     ~R#
+                     ((t_X3JO r_X3IO -> r_X3IO -> a_a3IC) :: *)))
+           eta1_B2 eta2_B1)
+        ((eta_X1d
+          `cast` (Job.N:Job[0] <t_X3JO>_R <r_X3IO>_N <b_a3ID>_R
+                  :: (Job t_X3JO r_X3IO b_a3ID :: *)
+                     ~R#
+                     ((t_X3JO r_X3IO -> r_X3IO -> b_a3ID) :: *)))
+           eta1_B2 eta2_B1)
+
+-- RHS size: {terms: 7, types: 12, coercions: 0, joins: 0/0}
+lvl3_r5bU :: forall r (t :: * -> *) a. a -> t r -> r -> a
+[GblId, Arity=3, Caf=NoCafRefs, Str=<S,1*U><L,A><L,A>]
+lvl3_r5bU
+  = \ (@ r_X3JG)
+      (@ (t_X3IJ :: * -> *))
+      (@ a_X3Jn)
+      (eta_X1s :: a_X3Jn)
+      _ [Occ=Dead]
+      _ [Occ=Dead] ->
+      eta_X1s
+
+-- RHS size: {terms: 11, types: 21, coercions: 4, joins: 0/0}
+lvl4_r5bV
+  :: forall (t :: * -> *) r a b.
+     Job t r a -> Job t r b -> t r -> r -> b
+[GblId,
+ Arity=4,
+ Caf=NoCafRefs,
+ Str=<L,A><C(C(S)),1*C1(C1(U))><L,U><L,U>]
+lvl4_r5bV
+  = \ (@ (t_X3IJ :: * -> *))
+      (@ r_X3JG)
+      (@ a_X3JT)
+      (@ b_X3JV)
+      _ [Occ=Dead]
+      (a2_X3Ni :: Job t_X3IJ r_X3JG b_X3JV)
+      (eta_B2 :: t_X3IJ r_X3JG)
+      (eta1_B1 :: r_X3JG) ->
+      (a2_X3Ni
+       `cast` (Job.N:Job[0] <t_X3IJ>_R <r_X3JG>_N <b_X3JV>_R
+               :: (Job t_X3IJ r_X3JG b_X3JV :: *)
+                  ~R#
+                  ((t_X3IJ r_X3JG -> r_X3JG -> b_X3JV) :: *)))
+        eta_B2 eta1_B1
+
+-- RHS size: {terms: 11, types: 21, coercions: 4, joins: 0/0}
+lvl5_r5bW
+  :: forall (t :: * -> *) r a b.
+     Job t r a -> Job t r b -> t r -> r -> a
+[GblId,
+ Arity=4,
+ Caf=NoCafRefs,
+ Str=<C(C(S)),1*C1(C1(U))><L,A><L,U><L,U>]
+lvl5_r5bW
+  = \ (@ (t_X3IJ :: * -> *))
+      (@ r_X3JG)
+      (@ a_X3KC)
+      (@ b_X3KE)
+      (x_X3NQ :: Job t_X3IJ r_X3JG a_X3KC)
+      _ [Occ=Dead]
+      (eta1_B2 :: t_X3IJ r_X3JG)
+      (eta2_B1 :: r_X3JG) ->
+      (x_X3NQ
+       `cast` (Job.N:Job[0] <t_X3IJ>_R <r_X3JG>_N <a_X3KC>_R
+               :: (Job t_X3IJ r_X3JG a_X3KC :: *)
+                  ~R#
+                  ((t_X3IJ r_X3JG -> r_X3JG -> a_X3KC) :: *)))
+        eta1_B2 eta2_B1
+
+-- RHS size: {terms: 13, types: 23, coercions: 102, joins: 0/0}
+Job.$fApplicativeJob [InlPrag=CONLIKE]
+  :: forall (t :: * -> *) r. Functor t => Applicative (Job t r)
+[GblId[DFunId],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<L,A>m,
+ Unf=DFun: \ (@ (t_aIz :: * -> *))
+             (@ r_aIA)
+             (v_B1 :: Functor t_aIz) ->
+       GHC.Base.C:Applicative TYPE: Job t_aIz r_aIA
+                              Job.$fFunctorJob @ t_aIz @ r_aIA v_B1
+                              (\ (@ a_X3Jn)
+                                 (eta_X1s [Occ=Once] :: a_X3Jn)
+                                 _ [Occ=Dead]
+                                 _ [Occ=Dead] ->
+                                 eta_X1s)
+                              `cast` (forall (a_X3Jp :: <*>_N).
+                                      <a_X3Jp>_R
+                                      -> Sym (Job.N:Job[0] <t_aIz>_R <r_aIA>_N <a_X3Jp>_R)
+                                      :: ((forall a. a -> t_aIz r_aIA -> r_aIA -> a) :: *)
+                                         ~R#
+                                         ((forall a. a -> Job t_aIz r_aIA a) :: *))
+                              (Job.$fApplicativeJob2 @ t_aIz @ r_aIA v_B1)
+                              `cast` (forall (a_X3Ji :: <*>_N).
+                                      forall (b_X3Jk :: <*>_N).
+                                      <Job t_aIz r_aIA (a_X3Ji -> b_X3Jk)>_R
+                                      -> <Job t_aIz r_aIA a_X3Ji>_R
+                                      -> Sym (Job.N:Job[0] <t_aIz>_R <r_aIA>_N <b_X3Jk>_R)
+                                      :: ((forall a b.
+                                           Job t_aIz r_aIA (a -> b)
+                                           -> Job t_aIz r_aIA a -> t_aIz r_aIA -> r_aIA -> b) :: *)
+                                         ~R#
+                                         ((forall a b.
+                                           Job t_aIz r_aIA (a -> b)
+                                           -> Job t_aIz r_aIA a -> Job t_aIz r_aIA b) :: *))
+                              (Job.$fApplicativeJob1 @ t_aIz @ r_aIA v_B1)
+                              `cast` (forall (a_X3K2 :: <*>_N).
+                                      forall (b_X3Lv :: <*>_N).
+                                      forall (c_X3K6 :: <*>_N).
+                                      <a_X3K2 -> b_X3Lv -> c_X3K6>_R
+                                      -> <Job t_aIz r_aIA a_X3K2>_R
+                                      -> <Job t_aIz r_aIA b_X3Lv>_R
+                                      -> Sym (Job.N:Job[0] <t_aIz>_R <r_aIA>_N <c_X3K6>_R)
+                                      :: ((forall a b c.
+                                           (a -> b -> c)
+                                           -> Job t_aIz r_aIA a
+                                           -> Job t_aIz r_aIA b
+                                           -> t_aIz r_aIA
+                                           -> r_aIA
+                                           -> c) :: *)
+                                         ~R#
+                                         ((forall a b c.
+                                           (a -> b -> c)
+                                           -> Job t_aIz r_aIA a
+                                           -> Job t_aIz r_aIA b
+                                           -> Job t_aIz r_aIA c) :: *))
+                              (\ (@ a_X3JT)
+                                 (@ b_X3JV)
+                                 _ [Occ=Dead]
+                                 (a2_X3Ni [Occ=Once] :: Job t_aIz r_aIA b_X3JV)
+                                 (eta_B2 [Occ=Once] :: t_aIz r_aIA)
+                                 (eta1_X13 [Occ=Once] :: r_aIA) ->
+                                 (a2_X3Ni
+                                  `cast` (Job.N:Job[0] <t_aIz>_R <r_aIA>_N <b_X3JV>_R
+                                          :: (Job t_aIz r_aIA b_X3JV :: *)
+                                             ~R#
+                                             ((t_aIz r_aIA -> r_aIA -> b_X3JV) :: *)))
+                                   eta_B2 eta1_X13)
+                              `cast` (forall (a_X3JV :: <*>_N).
+                                      forall (b_X3JX :: <*>_N).
+                                      <Job t_aIz r_aIA a_X3JV>_R
+                                      -> <Job t_aIz r_aIA b_X3JX>_R
+                                      -> Sym (Job.N:Job[0] <t_aIz>_R <r_aIA>_N <b_X3JX>_R)
+                                      :: ((forall a b.
+                                           Job t_aIz r_aIA a
+                                           -> Job t_aIz r_aIA b -> t_aIz r_aIA -> r_aIA -> b) :: *)
+                                         ~R#
+                                         ((forall a b.
+                                           Job t_aIz r_aIA a
+                                           -> Job t_aIz r_aIA b -> Job t_aIz r_aIA b) :: *))
+                              (\ (@ a_X3KC)
+                                 (@ b_X3KE)
+                                 (x_X3NQ [Occ=Once] :: Job t_aIz r_aIA a_X3KC)
+                                 _ [Occ=Dead]
+                                 (eta1_B2 [Occ=Once] :: t_aIz r_aIA)
+                                 (eta2_X1u [Occ=Once] :: r_aIA) ->
+                                 (x_X3NQ
+                                  `cast` (Job.N:Job[0] <t_aIz>_R <r_aIA>_N <a_X3KC>_R
+                                          :: (Job t_aIz r_aIA a_X3KC :: *)
+                                             ~R#
+                                             ((t_aIz r_aIA -> r_aIA -> a_X3KC) :: *)))
+                                   eta1_B2 eta2_X1u)
+                              `cast` (forall (a_X3KE :: <*>_N).
+                                      forall (b_X3KG :: <*>_N).
+                                      <Job t_aIz r_aIA a_X3KE>_R
+                                      -> <Job t_aIz r_aIA b_X3KG>_R
+                                      -> Sym (Job.N:Job[0] <t_aIz>_R <r_aIA>_N <a_X3KE>_R)
+                                      :: ((forall a b.
+                                           Job t_aIz r_aIA a
+                                           -> Job t_aIz r_aIA b -> t_aIz r_aIA -> r_aIA -> a) :: *)
+                                         ~R#
+                                         ((forall a b.
+                                           Job t_aIz r_aIA a
+                                           -> Job t_aIz r_aIA b -> Job t_aIz r_aIA a) :: *))]
+Job.$fApplicativeJob
+  = \ (@ (t_X3IJ :: * -> *))
+      (@ r_X3JG)
+      ($dFunctor_X3JJ :: Functor t_X3IJ) ->
+      GHC.Base.C:Applicative
+        @ (Job t_X3IJ r_X3JG)
+        (Job.$fFunctorJob @ t_X3IJ @ r_X3JG $dFunctor_X3JJ)
+        ((lvl3_r5bU @ r_X3JG @ t_X3IJ)
+         `cast` (forall (a_X3Jp :: <*>_N).
+                 <a_X3Jp>_R -> Sym (Job.N:Job[0] <t_X3IJ>_R <r_X3JG>_N <a_X3Jp>_R)
+                 :: ((forall a. a -> t_X3IJ r_X3JG -> r_X3JG -> a) :: *)
+                    ~R#
+                    ((forall a. a -> Job t_X3IJ r_X3JG a) :: *)))
+        ((Job.$fApplicativeJob2 @ t_X3IJ @ r_X3JG $dFunctor_X3JJ)
+         `cast` (forall (a_X3Ji :: <*>_N).
+                 forall (b_X3Jk :: <*>_N).
+                 <Job t_X3IJ r_X3JG (a_X3Ji -> b_X3Jk)>_R
+                 -> <Job t_X3IJ r_X3JG a_X3Ji>_R
+                 -> Sym (Job.N:Job[0] <t_X3IJ>_R <r_X3JG>_N <b_X3Jk>_R)
+                 :: ((forall a b.
+                      Job t_X3IJ r_X3JG (a -> b)
+                      -> Job t_X3IJ r_X3JG a -> t_X3IJ r_X3JG -> r_X3JG -> b) :: *)
+                    ~R#
+                    ((forall a b.
+                      Job t_X3IJ r_X3JG (a -> b)
+                      -> Job t_X3IJ r_X3JG a -> Job t_X3IJ r_X3JG b) :: *)))
+        ((Job.$fApplicativeJob1 @ t_X3IJ @ r_X3JG $dFunctor_X3JJ)
+         `cast` (forall (a_X3K2 :: <*>_N).
+                 forall (b_X3Lv :: <*>_N).
+                 forall (c_X3K6 :: <*>_N).
+                 <a_X3K2 -> b_X3Lv -> c_X3K6>_R
+                 -> <Job t_X3IJ r_X3JG a_X3K2>_R
+                 -> <Job t_X3IJ r_X3JG b_X3Lv>_R
+                 -> Sym (Job.N:Job[0] <t_X3IJ>_R <r_X3JG>_N <c_X3K6>_R)
+                 :: ((forall a b c.
+                      (a -> b -> c)
+                      -> Job t_X3IJ r_X3JG a
+                      -> Job t_X3IJ r_X3JG b
+                      -> t_X3IJ r_X3JG
+                      -> r_X3JG
+                      -> c) :: *)
+                    ~R#
+                    ((forall a b c.
+                      (a -> b -> c)
+                      -> Job t_X3IJ r_X3JG a
+                      -> Job t_X3IJ r_X3JG b
+                      -> Job t_X3IJ r_X3JG c) :: *)))
+        ((lvl4_r5bV @ t_X3IJ @ r_X3JG)
+         `cast` (forall (a_X3JV :: <*>_N).
+                 forall (b_X3JX :: <*>_N).
+                 <Job t_X3IJ r_X3JG a_X3JV>_R
+                 -> <Job t_X3IJ r_X3JG b_X3JX>_R
+                 -> Sym (Job.N:Job[0] <t_X3IJ>_R <r_X3JG>_N <b_X3JX>_R)
+                 :: ((forall a b.
+                      Job t_X3IJ r_X3JG a
+                      -> Job t_X3IJ r_X3JG b -> t_X3IJ r_X3JG -> r_X3JG -> b) :: *)
+                    ~R#
+                    ((forall a b.
+                      Job t_X3IJ r_X3JG a
+                      -> Job t_X3IJ r_X3JG b -> Job t_X3IJ r_X3JG b) :: *)))
+        ((lvl5_r5bW @ t_X3IJ @ r_X3JG)
+         `cast` (forall (a_X3KE :: <*>_N).
+                 forall (b_X3KG :: <*>_N).
+                 <Job t_X3IJ r_X3JG a_X3KE>_R
+                 -> <Job t_X3IJ r_X3JG b_X3KG>_R
+                 -> Sym (Job.N:Job[0] <t_X3IJ>_R <r_X3JG>_N <a_X3KE>_R)
+                 :: ((forall a b.
+                      Job t_X3IJ r_X3JG a
+                      -> Job t_X3IJ r_X3JG b -> t_X3IJ r_X3JG -> r_X3JG -> a) :: *)
+                    ~R#
+                    ((forall a b.
+                      Job t_X3IJ r_X3JG a
+                      -> Job t_X3IJ r_X3JG b -> Job t_X3IJ r_X3JG a) :: *)))
+
+-- RHS size: {terms: 5, types: 12, coercions: 0, joins: 0/0}
+Job.unJob1 :: forall (t :: * -> *) r a. Job t r a -> Job t r a
+[GblId,
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S,1*U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=1,unsat_ok=True,boring_ok=True)
+         Tmpl= \ (@ (t_a18Q :: * -> *))
+                 (@ r_a18R)
+                 (@ a_a18S)
+                 (ds_d3Ls [Occ=Once] :: Job t_a18Q r_a18R a_a18S) ->
+                 ds_d3Ls}]
+Job.unJob1
+  = \ (@ (t_a18Q :: * -> *))
+      (@ r_a18R)
+      (@ a_a18S)
+      (ds_d3Ls :: Job t_a18Q r_a18R a_a18S) ->
+      ds_d3Ls
+
+-- RHS size: {terms: 1, types: 0, coercions: 20, joins: 0/0}
+unJob :: forall (t :: * -> *) r a. Job t r a -> t r -> r -> a
+[GblId[[RecSel]],
+ Arity=1,
+ Caf=NoCafRefs,
+ Str=<S,1*U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
+         Tmpl= Job.unJob1
+               `cast` (forall (t_a18Q :: <* -> *>_N).
+                       forall (r_a18R :: <*>_N).
+                       forall (a_a18S :: <*>_N).
+                       <Job t_a18Q r_a18R a_a18S>_R
+                       -> Job.N:Job[0] <t_a18Q>_R <r_a18R>_N <a_a18S>_R
+                       :: ((forall (t :: * -> *) r a. Job t r a -> Job t r a) :: *)
+                          ~R#
+                          ((forall (t :: * -> *) r a. Job t r a -> t r -> r -> a) :: *))}]
+unJob
+  = Job.unJob1
+    `cast` (forall (t_a18Q :: <* -> *>_N).
+            forall (r_a18R :: <*>_N).
+            forall (a_a18S :: <*>_N).
+            <Job t_a18Q r_a18R a_a18S>_R
+            -> Job.N:Job[0] <t_a18Q>_R <r_a18R>_N <a_a18S>_R
+            :: ((forall (t :: * -> *) r a. Job t r a -> Job t r a) :: *)
+               ~R#
+               ((forall (t :: * -> *) r a. Job t r a -> t r -> r -> a) :: *))
+
+-- RHS size: {terms: 15, types: 24, coercions: 8, joins: 0/0}
+Job.$fMonadJob1
+  :: forall (t :: * -> *) r.
+     Functor t =>
+     forall a b. Job t r a -> (a -> Job t r b) -> t r -> r -> b
+[GblId,
+ Arity=5,
+ Caf=NoCafRefs,
+ Str=<L,A><L,1*C1(C1(U))><C(C(C(S))),1*C1(C1(C1(U)))><L,U><L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=5,unsat_ok=True,boring_ok=False)
+         Tmpl= \ (@ (t_a3GI :: * -> *))
+                 (@ r_a3GJ)
+                 _ [Occ=Dead]
+                 (@ a_a3GU)
+                 (@ b_a3GV)
+                 (ds_d3Lu [Occ=Once] :: Job t_a3GI r_a3GJ a_a3GU)
+                 (f_aIw [Occ=Once!] :: a_a3GU -> Job t_a3GI r_a3GJ b_a3GV)
+                 (rows_aIx :: t_a3GI r_a3GJ)
+                 (row2_aIy :: r_a3GJ) ->
+                 ((f_aIw
+                     ((ds_d3Lu
+                       `cast` (Job.N:Job[0] <t_a3GI>_R <r_a3GJ>_N <a_a3GU>_R
+                               :: (Job t_a3GI r_a3GJ a_a3GU :: *)
+                                  ~R#
+                                  ((t_a3GI r_a3GJ -> r_a3GJ -> a_a3GU) :: *)))
+                        rows_aIx row2_aIy))
+                  `cast` (Job.N:Job[0] <t_a3GI>_R <r_a3GJ>_N <b_a3GV>_R
+                          :: (Job t_a3GI r_a3GJ b_a3GV :: *)
+                             ~R#
+                             ((t_a3GI r_a3GJ -> r_a3GJ -> b_a3GV) :: *)))
+                   rows_aIx row2_aIy}]
+Job.$fMonadJob1
+  = \ (@ (t_a3GI :: * -> *))
+      (@ r_a3GJ)
+      _ [Occ=Dead]
+      (@ a_a3GU)
+      (@ b_a3GV)
+      (ds_d3Lu :: Job t_a3GI r_a3GJ a_a3GU)
+      (f_aIw :: a_a3GU -> Job t_a3GI r_a3GJ b_a3GV)
+      (rows_aIx :: t_a3GI r_a3GJ)
+      (row2_aIy :: r_a3GJ) ->
+      ((f_aIw
+          ((ds_d3Lu
+            `cast` (Job.N:Job[0] <t_a3GI>_R <r_a3GJ>_N <a_a3GU>_R
+                    :: (Job t_a3GI r_a3GJ a_a3GU :: *)
+                       ~R#
+                       ((t_a3GI r_a3GJ -> r_a3GJ -> a_a3GU) :: *)))
+             rows_aIx row2_aIy))
+       `cast` (Job.N:Job[0] <t_a3GI>_R <r_a3GJ>_N <b_a3GV>_R
+               :: (Job t_a3GI r_a3GJ b_a3GV :: *)
+                  ~R#
+                  ((t_a3GI r_a3GJ -> r_a3GJ -> b_a3GV) :: *)))
+        rows_aIx row2_aIy
+
+-- RHS size: {terms: 12, types: 23, coercions: 4, joins: 0/0}
+$c>>_r5bX
+  :: forall (t :: * -> *) r.
+     Functor t =>
+     forall a b. Job t r a -> Job t r b -> t r -> r -> b
+[GblId,
+ Arity=5,
+ Caf=NoCafRefs,
+ Str=<L,A><L,A><C(C(S)),1*C1(C1(U))><L,U><L,U>]
+$c>>_r5bX
+  = \ (@ (t_X3HX :: * -> *))
+      (@ r_X3HZ)
+      _ [Occ=Dead]
+      (@ a_a3Hc)
+      (@ b_a3Hd)
+      _ [Occ=Dead]
+      (eta1_B1 :: Job t_X3HX r_X3HZ b_a3Hd)
+      (rows_aIx :: t_X3HX r_X3HZ)
+      (row2_aIy :: r_X3HZ) ->
+      (eta1_B1
+       `cast` (Job.N:Job[0] <t_X3HX>_R <r_X3HZ>_N <b_a3Hd>_R
+               :: (Job t_X3HX r_X3HZ b_a3Hd :: *)
+                  ~R#
+                  ((t_X3HX r_X3HZ -> r_X3HZ -> b_a3Hd) :: *)))
+        rows_aIx row2_aIy
+
+-- RHS size: {terms: 1, types: 0, coercions: 32, joins: 0/0}
+Job.$fMonadJob_$c>> [InlPrag=INLINE (sat-args=2)]
+  :: forall (t :: * -> *) r.
+     Functor t =>
+     forall a b. Job t r a -> Job t r b -> Job t r b
+[GblId,
+ Arity=5,
+ Caf=NoCafRefs,
+ Str=<L,A><L,A><C(C(S)),1*C1(C1(U))><L,U><L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=3,unsat_ok=False,boring_ok=True)
+         Tmpl= (\ (@ (t_X3I5 :: * -> *))
+                  (@ r_X3I7)
+                  _ [Occ=Dead]
+                  (@ a_a3He)
+                  (@ b_a3Hf)
+                  _ [Occ=Dead]
+                  (k_a3LT [Occ=Once] :: Job t_X3I5 r_X3I7 b_a3Hf)
+                  (rows_aIx [Occ=Once] :: t_X3I5 r_X3I7)
+                  (row2_aIy [Occ=Once] :: r_X3I7) ->
+                  (k_a3LT
+                   `cast` (Job.N:Job[0] <t_X3I5>_R <r_X3I7>_N <b_a3Hf>_R
+                           :: (Job t_X3I5 r_X3I7 b_a3Hf :: *)
+                              ~R#
+                              ((t_X3I5 r_X3I7 -> r_X3I7 -> b_a3Hf) :: *)))
+                    rows_aIx row2_aIy)
+               `cast` (forall (t_X3I5 :: <* -> *>_N).
+                       forall (r_X3I7 :: <*>_N).
+                       <Functor t_X3I5>_R
+                       -> forall (a_a3He :: <*>_N).
+                          forall (b_a3Hf :: <*>_N).
+                          <Job t_X3I5 r_X3I7 a_a3He>_R
+                          -> <Job t_X3I5 r_X3I7 b_a3Hf>_R
+                          -> Sym (Job.N:Job[0] <t_X3I5>_R <r_X3I7>_N <b_a3Hf>_R)
+                       :: ((forall (t :: * -> *) r.
+                            Functor t =>
+                            forall a b. Job t r a -> Job t r b -> t r -> r -> b) :: *)
+                          ~R#
+                          ((forall (t :: * -> *) r.
+                            Functor t =>
+                            forall a b. Job t r a -> Job t r b -> Job t r b) :: *))}]
+Job.$fMonadJob_$c>>
+  = $c>>_r5bX
+    `cast` (forall (t_X3HX :: <* -> *>_N).
+            forall (r_X3HZ :: <*>_N).
+            <Functor t_X3HX>_R
+            -> forall (a_a3Hc :: <*>_N).
+               forall (b_a3Hd :: <*>_N).
+               <Job t_X3HX r_X3HZ a_a3Hc>_R
+               -> <Job t_X3HX r_X3HZ b_a3Hd>_R
+               -> Sym (Job.N:Job[0] <t_X3HX>_R <r_X3HZ>_N <b_a3Hd>_R)
+            :: ((forall (t :: * -> *) r.
+                 Functor t =>
+                 forall a b. Job t r a -> Job t r b -> t r -> r -> b) :: *)
+               ~R#
+               ((forall (t :: * -> *) r.
+                 Functor t =>
+                 forall a b. Job t r a -> Job t r b -> Job t r b) :: *))
+
+-- RHS size: {terms: 6, types: 15, coercions: 0, joins: 0/0}
+lvl6_r5bY :: forall (t :: * -> *) r a. [Char] -> Job t r a
+[GblId, Arity=1, Str=<B,U>x]
+lvl6_r5bY
+  = \ (@ (t_X3HW :: * -> *))
+      (@ r_X3HY)
+      (@ a_a3HG)
+      (eta_B1 :: [Char]) ->
+      errorWithoutStackTrace
+        @ 'GHC.Types.LiftedRep @ (Job t_X3HW r_X3HY a_a3HG) eta_B1
+
+-- RHS size: {terms: 12, types: 21, coercions: 32, joins: 0/0}
+Job.$fMonadJob [InlPrag=CONLIKE]
+  :: forall (t :: * -> *) r. Functor t => Monad (Job t r)
+[GblId[DFunId],
+ Arity=1,
+ Str=<L,A>m,
+ Unf=DFun: \ (@ (t_aIt :: * -> *))
+             (@ r_aIu)
+             (v_B1 :: Functor t_aIt) ->
+       GHC.Base.C:Monad TYPE: Job t_aIt r_aIu
+                        Job.$fApplicativeJob @ t_aIt @ r_aIu v_B1
+                        (Job.$fMonadJob1 @ t_aIt @ r_aIu v_B1)
+                        `cast` (forall (a_X3Id :: <*>_N).
+                                forall (b_X3If :: <*>_N).
+                                <Job t_aIt r_aIu a_X3Id>_R
+                                -> <a_X3Id -> Job t_aIt r_aIu b_X3If>_R
+                                -> Sym (Job.N:Job[0] <t_aIt>_R <r_aIu>_N <b_X3If>_R)
+                                :: ((forall a b.
+                                     Job t_aIt r_aIu a
+                                     -> (a -> Job t_aIt r_aIu b) -> t_aIt r_aIu -> r_aIu -> b) :: *)
+                                   ~R#
+                                   ((forall a b.
+                                     Job t_aIt r_aIu a
+                                     -> (a -> Job t_aIt r_aIu b) -> Job t_aIt r_aIu b) :: *))
+                        Job.$fMonadJob_$c>> @ t_aIt @ r_aIu v_B1
+                        (\ (@ a_X3Ju)
+                           (eta_X1z [Occ=Once] :: a_X3Ju)
+                           _ [Occ=Dead]
+                           _ [Occ=Dead] ->
+                           eta_X1z)
+                        `cast` (forall (a_X3Jw :: <*>_N).
+                                <a_X3Jw>_R -> Sym (Job.N:Job[0] <t_aIt>_R <r_aIu>_N <a_X3Jw>_R)
+                                :: ((forall a. a -> t_aIt r_aIu -> r_aIu -> a) :: *)
+                                   ~R#
+                                   ((forall a. a -> Job t_aIt r_aIu a) :: *))
+                        \ (@ a_a3HG) ->
+                          errorWithoutStackTrace
+                            @ 'GHC.Types.LiftedRep @ (Job t_aIt r_aIu a_a3HG)]
+Job.$fMonadJob
+  = \ (@ (t_X3HW :: * -> *))
+      (@ r_X3HY)
+      ($dFunctor_X3I0 :: Functor t_X3HW) ->
+      GHC.Base.C:Monad
+        @ (Job t_X3HW r_X3HY)
+        (Job.$fApplicativeJob @ t_X3HW @ r_X3HY $dFunctor_X3I0)
+        ((Job.$fMonadJob1 @ t_X3HW @ r_X3HY $dFunctor_X3I0)
+         `cast` (forall (a_X3Id :: <*>_N).
+                 forall (b_X3If :: <*>_N).
+                 <Job t_X3HW r_X3HY a_X3Id>_R
+                 -> <a_X3Id -> Job t_X3HW r_X3HY b_X3If>_R
+                 -> Sym (Job.N:Job[0] <t_X3HW>_R <r_X3HY>_N <b_X3If>_R)
+                 :: ((forall a b.
+                      Job t_X3HW r_X3HY a
+                      -> (a -> Job t_X3HW r_X3HY b)
+                      -> t_X3HW r_X3HY
+                      -> r_X3HY
+                      -> b) :: *)
+                    ~R#
+                    ((forall a b.
+                      Job t_X3HW r_X3HY a
+                      -> (a -> Job t_X3HW r_X3HY b) -> Job t_X3HW r_X3HY b) :: *)))
+        (Job.$fMonadJob_$c>> @ t_X3HW @ r_X3HY $dFunctor_X3I0)
+        ((lvl3_r5bU @ r_X3HY @ t_X3HW)
+         `cast` (forall (a_X3Jw :: <*>_N).
+                 <a_X3Jw>_R -> Sym (Job.N:Job[0] <t_X3HW>_R <r_X3HY>_N <a_X3Jw>_R)
+                 :: ((forall a. a -> t_X3HW r_X3HY -> r_X3HY -> a) :: *)
+                    ~R#
+                    ((forall a. a -> Job t_X3HW r_X3HY a) :: *)))
+        (lvl6_r5bY @ t_X3HW @ r_X3HY)
+
+-- RHS size: {terms: 8, types: 13, coercions: 0, joins: 0/0}
+Job.col1 :: forall r a (t :: * -> *). (r -> a) -> t r -> r -> a
+[GblId,
+ Arity=3,
+ Caf=NoCafRefs,
+ Str=<C(S),1*C1(U)><L,A><L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=3,unsat_ok=True,boring_ok=True)
+         Tmpl= \ (@ r_a3Gz)
+                 (@ a_a3GA)
+                 (@ (t_a3GB :: * -> *))
+                 (f_aSy [Occ=Once!] :: r_a3Gz -> a_a3GA)
+                 _ [Occ=Dead]
+                 (row2_aSz [Occ=Once] :: r_a3Gz) ->
+                 f_aSy row2_aSz}]
+Job.col1
+  = \ (@ r_a3Gz)
+      (@ a_a3GA)
+      (@ (t_a3GB :: * -> *))
+      (f_aSy :: r_a3Gz -> a_a3GA)
+      _ [Occ=Dead]
+      (row2_aSz :: r_a3Gz) ->
+      f_aSy row2_aSz
+
+-- RHS size: {terms: 1, types: 0, coercions: 19, joins: 0/0}
+col :: forall r a (t :: * -> *). (r -> a) -> Job t r a
+[GblId,
+ Arity=3,
+ Caf=NoCafRefs,
+ Str=<C(S),1*C1(U)><L,A><L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
+         Tmpl= Job.col1
+               `cast` (forall (r_a3Gz :: <*>_N).
+                       forall (a_a3GA :: <*>_N).
+                       forall (t_a3GB :: <* -> *>_N).
+                       <r_a3Gz -> a_a3GA>_R
+                       -> Sym (Job.N:Job[0] <t_a3GB>_R <r_a3Gz>_N <a_a3GA>_R)
+                       :: ((forall r a (t :: * -> *). (r -> a) -> t r -> r -> a) :: *)
+                          ~R#
+                          ((forall r a (t :: * -> *). (r -> a) -> Job t r a) :: *))}]
+col
+  = Job.col1
+    `cast` (forall (r_a3Gz :: <*>_N).
+            forall (a_a3GA :: <*>_N).
+            forall (t_a3GB :: <* -> *>_N).
+            <r_a3Gz -> a_a3GA>_R
+            -> Sym (Job.N:Job[0] <t_a3GB>_R <r_a3Gz>_N <a_a3GA>_R)
+            :: ((forall r a (t :: * -> *). (r -> a) -> t r -> r -> a) :: *)
+               ~R#
+               ((forall r a (t :: * -> *). (r -> a) -> Job t r a) :: *))
+
+-- RHS size: {terms: 5, types: 9, coercions: 0, joins: 0/0}
+Job.row1 :: forall r (t :: * -> *). t r -> r -> r
+[GblId,
+ Arity=2,
+ Caf=NoCafRefs,
+ Str=<L,A><S,1*U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=2,unsat_ok=True,boring_ok=True)
+         Tmpl= \ (@ r_a3Gs)
+                 (@ (t_a3Gr :: * -> *))
+                 _ [Occ=Dead]
+                 (row2_XUb [Occ=Once] :: r_a3Gs) ->
+                 row2_XUb}]
+Job.row1
+  = \ (@ r_a3Gs)
+      (@ (t_a3Gr :: * -> *))
+      _ [Occ=Dead]
+      (row2_XUb :: r_a3Gs) ->
+      row2_XUb
+
+-- RHS size: {terms: 3, types: 8, coercions: 13, joins: 0/0}
+row :: forall (t :: * -> *) r. Job t r r
+[GblId,
+ Arity=2,
+ Caf=NoCafRefs,
+ Str=<L,A><S,1*U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
+         Tmpl= (\ (@ (t_a3Gr :: * -> *)) (@ r_a3Gs) ->
+                  Job.row1 @ r_a3Gs @ t_a3Gr)
+               `cast` (forall (t_a3Gr :: <* -> *>_N).
+                       forall (r_a3Gs :: <*>_N).
+                       Sym (Job.N:Job[0] <t_a3Gr>_R <r_a3Gs>_N <r_a3Gs>_R)
+                       :: ((forall (t :: * -> *) r. t r -> r -> r) :: *)
+                          ~R#
+                          ((forall (t :: * -> *) r. Job t r r) :: *))}]
+row
+  = (\ (@ (t_a3Gr :: * -> *)) (@ r_a3Gs) ->
+       Job.row1 @ r_a3Gs @ t_a3Gr)
+    `cast` (forall (t_a3Gr :: <* -> *>_N).
+            forall (r_a3Gs :: <*>_N).
+            Sym (Job.N:Job[0] <t_a3Gr>_R <r_a3Gs>_N <r_a3Gs>_R)
+            :: ((forall (t :: * -> *) r. t r -> r -> r) :: *)
+               ~R#
+               ((forall (t :: * -> *) r. Job t r r) :: *))
+
+-- RHS size: {terms: 3, types: 9, coercions: 14, joins: 0/0}
+everything :: forall (t :: * -> *) r. Job t r (t r)
+[GblId,
+ Arity=2,
+ Caf=NoCafRefs,
+ Str=<S,1*U><L,A>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=0,unsat_ok=True,boring_ok=True)
+         Tmpl= (\ (@ (t_a3Fx :: * -> *)) (@ r_a3Fy) ->
+                  const @ (t_a3Fx r_a3Fy) @ r_a3Fy)
+               `cast` (forall (t_a3Fx :: <* -> *>_N).
+                       forall (r_a3Fy :: <*>_N).
+                       Sym (Job.N:Job[0] <t_a3Fx>_R <r_a3Fy>_N <t_a3Fx r_a3Fy>_R)
+                       :: ((forall (t :: * -> *) r. t r -> r -> t r) :: *)
+                          ~R#
+                          ((forall (t :: * -> *) r. Job t r (t r)) :: *))}]
+everything
+  = (\ (@ (t_a3Fx :: * -> *)) (@ r_a3Fy) ->
+       const @ (t_a3Fx r_a3Fy) @ r_a3Fy)
+    `cast` (forall (t_a3Fx :: <* -> *>_N).
+            forall (r_a3Fy :: <*>_N).
+            Sym (Job.N:Job[0] <t_a3Fx>_R <r_a3Fy>_N <t_a3Fx r_a3Fy>_R)
+            :: ((forall (t :: * -> *) r. t r -> r -> t r) :: *)
+               ~R#
+               ((forall (t :: * -> *) r. Job t r (t r)) :: *))
+
+-- RHS size: {terms: 14, types: 21, coercions: 4, joins: 0/0}
+runJob
+  :: forall (t :: * -> *) r a. Functor t => Job t r a -> t r -> t a
+[GblId,
+ Arity=3,
+ Caf=NoCafRefs,
+ Str=<S(C(C(S))L),1*U(1*C1(C1(U)),A)><C(S),1*C1(U)><L,U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=3,unsat_ok=True,boring_ok=False)
+         Tmpl= \ (@ (t_a3Fb :: * -> *))
+                 (@ r_a3Fc)
+                 (@ a_a3Fd)
+                 ($dFunctor_a3Ff [Occ=Once] :: Functor t_a3Fb)
+                 (ds_d3Lc [Occ=Once] :: Job t_a3Fb r_a3Fc a_a3Fd)
+                 (rs_aSC :: t_a3Fb r_a3Fc) ->
+                 case (ds_d3Lc
+                       `cast` (Job.N:Job[0] <t_a3Fb>_R <r_a3Fc>_N <a_a3Fd>_R
+                               :: (Job t_a3Fb r_a3Fc a_a3Fd :: *)
+                                  ~R#
+                                  ((t_a3Fb r_a3Fc -> r_a3Fc -> a_a3Fd) :: *)))
+                        rs_aSC
+                 of f_aSD
+                 { __DEFAULT ->
+                 fmap @ t_a3Fb $dFunctor_a3Ff @ r_a3Fc @ a_a3Fd f_aSD rs_aSC
+                 }}]
+runJob
+  = \ (@ (t_a3Fb :: * -> *))
+      (@ r_a3Fc)
+      (@ a_a3Fd)
+      ($dFunctor_a3Ff :: Functor t_a3Fb)
+      (ds_d3Lc :: Job t_a3Fb r_a3Fc a_a3Fd)
+      (rs_aSC :: t_a3Fb r_a3Fc) ->
+      case (ds_d3Lc
+            `cast` (Job.N:Job[0] <t_a3Fb>_R <r_a3Fc>_N <a_a3Fd>_R
+                    :: (Job t_a3Fb r_a3Fc a_a3Fd :: *)
+                       ~R#
+                       ((t_a3Fb r_a3Fc -> r_a3Fc -> a_a3Fd) :: *)))
+             rs_aSC
+      of f_aSD
+      { __DEFAULT ->
+      fmap @ t_a3Fb $dFunctor_a3Ff @ r_a3Fc @ a_a3Fd f_aSD rs_aSC
+      }
+
+-- RHS size: {terms: 7, types: 8, coercions: 0, joins: 0/0}
+Job.withGroups1 :: forall r. M.Key -> [r] -> [r] -> [r]
+[GblId,
+ Arity=3,
+ Caf=NoCafRefs,
+ Str=<L,A><S,1*U><L,1*U>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=3,unsat_ok=True,boring_ok=False)
+         Tmpl= \ (@ r_a3wa)
+                 _ [Occ=Dead, OS=OneShot]
+                 (x'_a3Nf [Occ=Once, OS=OneShot] :: [r_a3wa])
+                 (y'_a3Ng [Occ=Once, OS=OneShot] :: [r_a3wa]) ->
+                 GHC.Base.augment
+                   @ r_a3wa
+                   (\ (@ b_a3O8)
+                      (c_a3O9 [Occ=Once, OS=OneShot] :: r_a3wa -> b_a3O8 -> b_a3O8)
+                      (n_a3Oa [Occ=Once, OS=OneShot] :: b_a3O8) ->
+                      GHC.Base.foldr @ r_a3wa @ b_a3O8 c_a3O9 n_a3Oa x'_a3Nf)
+                   y'_a3Ng}]
+Job.withGroups1
+  = \ (@ r_a3wa)
+      _ [Occ=Dead, OS=OneShot]
+      (x'_a3Nf [OS=OneShot] :: [r_a3wa])
+      (y'_a3Ng [OS=OneShot] :: [r_a3wa]) ->
+      ++ @ r_a3wa x'_a3Nf y'_a3Ng
+
+-- RHS size: {terms: 48, types: 62, coercions: 9, joins: 0/4}
+withGroups
+  :: forall (t :: * -> *) b r a.
+     (Foldable t, Enum b) =>
+     (r -> b) -> Job [] r a -> Job t r a
+[GblId,
+ Arity=4,
+ Str=<L,1*U(A,A,A,1*C1(C1(C(U))),A,A,A,A,A,A,A,A,A,A,A,A)><L,U(A,A,A,C(U(U)),A,A,A,A)><L,C(U)><L,C(U)>,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=IF_ARGS [30 60 60 0] 390 60}]
+withGroups
+  = \ (@ (t_a3w8 :: * -> *))
+      (@ b_a3w9)
+      (@ r_a3wa)
+      (@ a_a3wb)
+      ($dFoldable_a3wd :: Foldable t_a3w8)
+      ($dEnum_a3we :: Enum b_a3w9)
+      (grouper__aST :: r_a3wa -> b_a3w9)
+      (ds_d3KV :: Job [] r_a3wa a_a3wb) ->
+      let {
+        mkGroups_s4Y7 [Dmd=<L,C(U)>] :: t_a3w8 r_a3wa -> M.IntMap [r_a3wa]
+        [LclId]
+        mkGroups_s4Y7
+          = foldr'
+              @ t_a3w8
+              $dFoldable_a3wd
+              @ r_a3wa
+              @ (M.IntMap [r_a3wa])
+              (\ (row2_aSY :: r_a3wa) ->
+                 let {
+                   k_s4Ya [Dmd=<L,U(U)>] :: M.Key
+                   [LclId]
+                   k_s4Ya = fromEnum @ b_a3w9 $dEnum_a3we (grouper__aST row2_aSY) } in
+                 let {
+                   x_s4Yc :: [r_a3wa]
+                   [LclId, Unf=OtherCon []]
+                   x_s4Yc = GHC.Types.: @ r_a3wa row2_aSY (GHC.Types.[] @ r_a3wa) } in
+                 \ (t1_a3Nb :: M.IntMap [r_a3wa]) ->
+                   case k_s4Ya of { GHC.Types.I# ww1_a3Om ->
+                   Data.IntMap.Internal.$winsertWithKey
+                     @ [r_a3wa] (Job.withGroups1 @ r_a3wa) ww1_a3Om x_s4Yc t1_a3Nb
+                   })
+              (Data.IntMap.Internal.Nil @ [r_a3wa]) } in
+      (\ (rows_a188 :: t_a3w8 r_a3wa) ->
+         let {
+           groups_s4Y6 :: M.IntMap (r_a3wa -> a_a3wb)
+           [LclId]
+           groups_s4Y6
+             = M.map
+                 @ [r_a3wa]
+                 @ (r_a3wa -> a_a3wb)
+                 (ds_d3KV
+                  `cast` (Job.N:Job[0] <[]>_R <r_a3wa>_N <a_a3wb>_R
+                          :: (Job [] r_a3wa a_a3wb :: *)
+                             ~R#
+                             (([r_a3wa] -> r_a3wa -> a_a3wb) :: *)))
+                 (mkGroups_s4Y7 rows_a188) } in
+         \ (row2_a18a :: r_a3wa) ->
+           case fromEnum @ b_a3w9 $dEnum_a3we (grouper__aST row2_a18a) of
+           { GHC.Types.I# ww1_a3NL ->
+           Data.IntMap.Internal.$w!
+             @ (r_a3wa -> a_a3wb) groups_s4Y6 ww1_a3NL row2_a18a
+           })
+      `cast` (Sym (Job.N:Job[0] <t_a3w8>_R <r_a3wa>_N <a_a3wb>_R)
+              :: ((t_a3w8 r_a3wa -> r_a3wa -> a_a3wb) :: *)
+                 ~R#
+                 (Job t_a3w8 r_a3wa a_a3wb :: *))
+
+-- RHS size: {terms: 20, types: 32, coercions: 5, joins: 0/0}
+groupSummarize
+  :: forall (t :: * -> *) b r c a.
+     (Foldable t, Enum b) =>
+     (r -> b) -> (r -> c) -> ([c] -> a) -> Job t r a
+[GblId,
+ Arity=5,
+ Str=<L,1*U(A,A,A,1*C1(C1(C(U))),A,A,A,A,A,A,A,A,A,A,A,A)><L,U(A,A,A,C(U(U)),A,A,A,A)><L,C(U)><L,C(U)><L,C(U)>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=5,unsat_ok=True,boring_ok=False)
+         Tmpl= \ (@ (t_a3FI :: * -> *))
+                 (@ b_a3FJ)
+                 (@ r_a3FK)
+                 (@ c_a3FL)
+                 (@ a_a3FM)
+                 ($dFoldable_a3FO [Occ=Once] :: Foldable t_a3FI)
+                 ($dEnum_a3FP [Occ=Once] :: Enum b_a3FJ)
+                 (grouper_a18b [Occ=Once] :: r_a3FK -> b_a3FJ)
+                 (mapper_a18c [Occ=OnceL] :: r_a3FK -> c_a3FL)
+                 (summarizer_a18d [Occ=OnceL!] :: [c_a3FL] -> a_a3FM) ->
+                 withGroups
+                   @ t_a3FI
+                   @ b_a3FJ
+                   @ r_a3FK
+                   @ a_a3FM
+                   $dFoldable_a3FO
+                   $dEnum_a3FP
+                   grouper_a18b
+                   ((\ (rows_aIJ [Occ=Once] :: [r_a3FK]) _ [Occ=Dead] ->
+                       summarizer_a18d
+                         (GHC.Base.build
+                            @ c_a3FL
+                            (\ (@ b1_a3Q4)
+                               (c1_a3Q5 [Occ=Once, OS=OneShot] :: c_a3FL -> b1_a3Q4 -> b1_a3Q4)
+                               (n_a3Q6 [Occ=Once, OS=OneShot] :: b1_a3Q4) ->
+                               GHC.Base.foldr
+                                 @ r_a3FK
+                                 @ b1_a3Q4
+                                 (GHC.Base.mapFB @ c_a3FL @ b1_a3Q4 @ r_a3FK c1_a3Q5 mapper_a18c)
+                                 n_a3Q6
+                                 rows_aIJ)))
+                    `cast` (Sym (Job.N:Job[0] <[]>_R <r_a3FK>_N <a_a3FM>_R)
+                            :: (([r_a3FK] -> r_a3FK -> a_a3FM) :: *)
+                               ~R#
+                               (Job [] r_a3FK a_a3FM :: *)))}]
+groupSummarize
+  = \ (@ (t_a3FI :: * -> *))
+      (@ b_a3FJ)
+      (@ r_a3FK)
+      (@ c_a3FL)
+      (@ a_a3FM)
+      ($dFoldable_a3FO :: Foldable t_a3FI)
+      ($dEnum_a3FP :: Enum b_a3FJ)
+      (grouper_a18b :: r_a3FK -> b_a3FJ)
+      (mapper_a18c :: r_a3FK -> c_a3FL)
+      (summarizer_a18d :: [c_a3FL] -> a_a3FM) ->
+      withGroups
+        @ t_a3FI
+        @ b_a3FJ
+        @ r_a3FK
+        @ a_a3FM
+        $dFoldable_a3FO
+        $dEnum_a3FP
+        grouper_a18b
+        ((\ (rows_aIJ :: [r_a3FK]) _ [Occ=Dead] ->
+            summarizer_a18d (map @ r_a3FK @ c_a3FL mapper_a18c rows_aIJ))
+         `cast` (Sym (Job.N:Job[0] <[]>_R <r_a3FK>_N <a_a3FM>_R)
+                 :: (([r_a3FK] -> r_a3FK -> a_a3FM) :: *)
+                    ~R#
+                    (Job [] r_a3FK a_a3FM :: *)))
+
+-- RHS size: {terms: 9, types: 16, coercions: 6, joins: 0/0}
+groupBy :: forall b r. Enum b => (r -> b) -> Job [] r [r]
+[GblId,
+ Arity=2,
+ Str=<L,U(A,A,A,C(U(U)),A,A,A,A)><L,C(U)>,
+ Unf=Unf{Src=InlineStable, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True,
+         Guidance=ALWAYS_IF(arity=2,unsat_ok=True,boring_ok=False)
+         Tmpl= \ (@ b_a3Ge)
+                 (@ r_a3Gf)
+                 ($dEnum_a3Gh [Occ=Once] :: Enum b_a3Ge)
+                 (grouper_a18e [Occ=Once] :: r_a3Gf -> b_a3Ge) ->
+                 withGroups
+                   @ []
+                   @ b_a3Ge
+                   @ r_a3Gf
+                   @ [r_a3Gf]
+                   Data.Foldable.$fFoldable[]
+                   $dEnum_a3Gh
+                   grouper_a18e
+                   ((const @ [r_a3Gf] @ r_a3Gf)
+                    `cast` (Sym (Job.N:Job[0] <[]>_R <r_a3Gf>_N <[r_a3Gf]>_R)
+                            :: (([r_a3Gf] -> r_a3Gf -> [r_a3Gf]) :: *)
+                               ~R#
+                               (Job [] r_a3Gf [r_a3Gf] :: *)))}]
+groupBy
+  = \ (@ b_a3Ge)
+      (@ r_a3Gf)
+      ($dEnum_a3Gh :: Enum b_a3Ge)
+      (grouper_a18e :: r_a3Gf -> b_a3Ge) ->
+      withGroups
+        @ []
+        @ b_a3Ge
+        @ r_a3Gf
+        @ [r_a3Gf]
+        Data.Foldable.$fFoldable[]
+        $dEnum_a3Gh
+        grouper_a18e
+        ((const @ [r_a3Gf] @ r_a3Gf)
+         `cast` (Sym (Job.N:Job[0] <[]>_R <r_a3Gf>_N <[r_a3Gf]>_R)
+                 :: (([r_a3Gf] -> r_a3Gf -> [r_a3Gf]) :: *)
+                    ~R#
+                    (Job [] r_a3Gf [r_a3Gf] :: *)))
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+Job.$trModule4 :: GHC.Prim.Addr#
+[GblId,
+ Caf=NoCafRefs,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 0}]
+Job.$trModule4 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+Job.$trModule3 :: GHC.Types.TrName
+[GblId,
+ Caf=NoCafRefs,
+ Str=m1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+Job.$trModule3 = GHC.Types.TrNameS Job.$trModule4
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+Job.$trModule2 :: GHC.Prim.Addr#
+[GblId,
+ Caf=NoCafRefs,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 0}]
+Job.$trModule2 = "Job"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+Job.$trModule1 :: GHC.Types.TrName
+[GblId,
+ Caf=NoCafRefs,
+ Str=m1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+Job.$trModule1 = GHC.Types.TrNameS Job.$trModule2
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Job.$trModule :: GHC.Types.Module
+[GblId,
+ Caf=NoCafRefs,
+ Str=m,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 30}]
+Job.$trModule = GHC.Types.Module Job.$trModule3 Job.$trModule1
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Job.$tcJob1 [InlPrag=[~]] :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m4]
+Job.$tcJob1
+  = GHC.Types.KindRepFun GHC.Types.krep$*Arr* GHC.Types.krep$*->*->*
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$krep_r5bZ :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m2]
+$krep_r5bZ = GHC.Types.KindRepVar 2#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$krep1_r5c0 :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m2]
+$krep1_r5c0 = GHC.Types.KindRepVar 1#
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep2_r5c1 :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m4]
+$krep2_r5c1 = GHC.Types.KindRepFun $krep1_r5c0 $krep_r5bZ
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$krep3_r5c2 :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m2]
+$krep3_r5c2 = GHC.Types.KindRepVar 0#
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep4_r5c3 :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m3]
+$krep4_r5c3 = GHC.Types.KindRepApp $krep3_r5c2 $krep1_r5c0
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep5_r5c4 :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m4]
+$krep5_r5c4 = GHC.Types.KindRepFun $krep4_r5c3 $krep2_r5c1
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Job.$tcJob :: GHC.Types.TyCon
+[GblId,
+ Caf=NoCafRefs,
+ Str=m,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 70}]
+Job.$tcJob
+  = GHC.Types.TyCon
+      15480058198718807595##
+      12854140981198667293##
+      Job.$trModule
+      Job.$trModule1
+      0#
+      Job.$tcJob1
+
+-- RHS size: {terms: 3, types: 2, coercions: 0, joins: 0/0}
+$krep6_r5c5 :: [GHC.Types.KindRep]
+[GblId, Caf=NoCafRefs, Str=m2]
+$krep6_r5c5
+  = GHC.Types.:
+      @ GHC.Types.KindRep $krep_r5bZ (GHC.Types.[] @ GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep7_r5c6 :: [GHC.Types.KindRep]
+[GblId, Caf=NoCafRefs, Str=m2]
+$krep7_r5c6
+  = GHC.Types.: @ GHC.Types.KindRep $krep1_r5c0 $krep6_r5c5
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep8_r5c7 :: [GHC.Types.KindRep]
+[GblId, Caf=NoCafRefs, Str=m2]
+$krep8_r5c7
+  = GHC.Types.: @ GHC.Types.KindRep $krep3_r5c2 $krep7_r5c6
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep9_r5c8 :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m1]
+$krep9_r5c8 = GHC.Types.KindRepTyConApp Job.$tcJob $krep8_r5c7
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Job.$tc'Job1 [InlPrag=[~]] :: GHC.Types.KindRep
+[GblId, Caf=NoCafRefs, Str=m4]
+Job.$tc'Job1 = GHC.Types.KindRepFun $krep5_r5c4 $krep9_r5c8
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+Job.$tc'Job3 :: GHC.Prim.Addr#
+[GblId,
+ Caf=NoCafRefs,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 20 0}]
+Job.$tc'Job3 = "'Job"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+Job.$tc'Job2 :: GHC.Types.TrName
+[GblId,
+ Caf=NoCafRefs,
+ Str=m1,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 20}]
+Job.$tc'Job2 = GHC.Types.TrNameS Job.$tc'Job3
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Job.$tc'Job :: GHC.Types.TyCon
+[GblId,
+ Caf=NoCafRefs,
+ Str=m,
+ Unf=Unf{Src=<vanilla>, TopLvl=True, Value=True, ConLike=True,
+         WorkFree=True, Expandable=True, Guidance=IF_ARGS [] 10 70}]
+Job.$tc'Job
+  = GHC.Types.TyCon
+      13826465280705420091##
+      1867309356378979579##
+      Job.$trModule
+      Job.$tc'Job2
+      3#
+      Job.$tc'Job1
+
+

@@ -1,0 +1,870 @@
+
+==================== Tidy Core ====================
+2018-08-19 04:22:06.670594127 UTC
+
+Result size of Tidy Core
+  = {terms: 699, types: 431, coercions: 12, joins: 4/9}
+
+-- RHS size: {terms: 12, types: 3, coercions: 0, joins: 0/0}
+$cshowsPrec_r6xc :: Int -> Gender -> ShowS
+[GblId, Arity=2]
+$cshowsPrec_r6xc
+  = \ _ [Occ=Dead] (ds1_d6x9 :: Gender) ->
+      case ds1_d6x9 of {
+        M -> showString (GHC.CString.unpackCString# "M"#);
+        F -> showString (GHC.CString.unpackCString# "F"#)
+      }
+
+-- RHS size: {terms: 4, types: 1, coercions: 0, joins: 0/0}
+$cshowList_r6yD :: [Gender] -> ShowS
+[GblId]
+$cshowList_r6yD
+  = GHC.Show.showList__ @ Gender ($cshowsPrec_r6xc (GHC.Types.I# 0#))
+
+Rec {
+-- RHS size: {terms: 4, types: 1, coercions: 0, joins: 0/0}
+Main.$fShowGender [InlPrag=CONLIKE] :: Show Gender
+[GblId[DFunId]]
+Main.$fShowGender
+  = GHC.Show.C:Show
+      @ Gender $cshowsPrec_r6xc $cshow_r6yE $cshowList_r6yD
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$cshow_r6yE :: Gender -> String
+[GblId]
+$cshow_r6yE = GHC.Show.$dmshow @ Gender Main.$fShowGender
+end Rec }
+
+-- RHS size: {terms: 51, types: 36, coercions: 0, joins: 0/0}
+$cshowsPrec1_r6yF :: Int -> Person -> ShowS
+[GblId, Arity=2]
+$cshowsPrec1_r6yF
+  = \ (a_a65S :: Int) (ds_d6xa :: Person) ->
+      case ds_d6xa of { Person b1_a65T b2_a65U b3_a65V ->
+      showParen
+        (>= @ Int GHC.Classes.$fOrdInt a_a65S (GHC.Types.I# 11#))
+        (. @ String
+           @ String
+           @ String
+           (showString (GHC.CString.unpackCString# "Person {"#))
+           (. @ String
+              @ String
+              @ String
+              (showString (GHC.CString.unpackCString# "height = "#))
+              (. @ String
+                 @ String
+                 @ String
+                 (showsPrec
+                    @ Double GHC.Float.$fShowDouble (GHC.Types.I# 0#) b1_a65T)
+                 (. @ String
+                    @ String
+                    @ String
+                    GHC.Show.showCommaSpace
+                    (. @ String
+                       @ String
+                       @ String
+                       (showString (GHC.CString.unpackCString# "weight = "#))
+                       (. @ String
+                          @ String
+                          @ String
+                          (showsPrec
+                             @ Double GHC.Float.$fShowDouble (GHC.Types.I# 0#) b2_a65U)
+                          (. @ String
+                             @ String
+                             @ String
+                             GHC.Show.showCommaSpace
+                             (. @ String
+                                @ String
+                                @ String
+                                (showString (GHC.CString.unpackCString# "gender = "#))
+                                (. @ String
+                                   @ String
+                                   @ String
+                                   ($cshowsPrec_r6xc (GHC.Types.I# 0#) b3_a65V)
+                                   (showString (GHC.CString.unpackCString# "}"#)))))))))))
+      }
+
+-- RHS size: {terms: 4, types: 1, coercions: 0, joins: 0/0}
+$cshowList1_r6yG :: [Person] -> ShowS
+[GblId]
+$cshowList1_r6yG
+  = GHC.Show.showList__
+      @ Person ($cshowsPrec1_r6yF (GHC.Types.I# 0#))
+
+Rec {
+-- RHS size: {terms: 4, types: 1, coercions: 0, joins: 0/0}
+Main.$fShowPerson [InlPrag=CONLIKE] :: Show Person
+[GblId[DFunId]]
+Main.$fShowPerson
+  = GHC.Show.C:Show
+      @ Person $cshowsPrec1_r6yF $cshow1_r6yH $cshowList1_r6yG
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$cshow1_r6yH :: Person -> String
+[GblId]
+$cshow1_r6yH = GHC.Show.$dmshow @ Person Main.$fShowPerson
+end Rec }
+
+-- RHS size: {terms: 18, types: 5, coercions: 0, joins: 0/0}
+$c==_r6yI :: Gender -> Gender -> Bool
+[GblId, Arity=2, Caf=NoCafRefs]
+$c==_r6yI
+  = \ (ds_d6x4 :: Gender) (ds1_d6x5 :: Gender) ->
+      case ds_d6x4 of {
+        M ->
+          case ds1_d6x5 of {
+            M -> GHC.Types.True;
+            F -> GHC.Types.False
+          };
+        F ->
+          case ds1_d6x5 of {
+            M -> GHC.Types.False;
+            F -> GHC.Types.True
+          }
+      }
+
+-- RHS size: {terms: 6, types: 2, coercions: 0, joins: 0/0}
+$c/=_r6yJ :: Gender -> Gender -> Bool
+[GblId, Arity=2]
+$c/=_r6yJ
+  = \ (a_a65Q :: Gender) (b_a65R :: Gender) ->
+      not ($c==_r6yI a_a65Q b_a65R)
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+Main.$fEqGender [InlPrag=CONLIKE] :: Eq Gender
+[GblId[DFunId]]
+Main.$fEqGender = GHC.Classes.C:Eq @ Gender $c==_r6yI $c/=_r6yJ
+
+-- RHS size: {terms: 16, types: 5, coercions: 0, joins: 0/0}
+$c<_r6yK :: Gender -> Gender -> Bool
+[GblId, Arity=2, Caf=NoCafRefs]
+$c<_r6yK
+  = \ (a_a65I :: Gender) (b_a65J :: Gender) ->
+      case a_a65I of {
+        M ->
+          case b_a65J of {
+            M -> GHC.Types.False;
+            F -> GHC.Types.True
+          };
+        F -> case b_a65J of { __DEFAULT -> GHC.Types.False }
+      }
+
+-- RHS size: {terms: 18, types: 5, coercions: 0, joins: 0/0}
+$ccompare_r6yL :: Gender -> Gender -> Ordering
+[GblId, Arity=2, Caf=NoCafRefs]
+$ccompare_r6yL
+  = \ (a_a65G :: Gender) (b_a65H :: Gender) ->
+      case a_a65G of {
+        M ->
+          case b_a65H of {
+            M -> GHC.Types.EQ;
+            F -> GHC.Types.LT
+          };
+        F ->
+          case b_a65H of {
+            M -> GHC.Types.GT;
+            F -> GHC.Types.EQ
+          }
+      }
+
+-- RHS size: {terms: 6, types: 2, coercions: 0, joins: 0/0}
+$c<=_r6yM :: Gender -> Gender -> Bool
+[GblId, Arity=2]
+$c<=_r6yM
+  = \ (a_a65K :: Gender) (b_a65L :: Gender) ->
+      not ($c<_r6yK b_a65L a_a65K)
+
+-- RHS size: {terms: 6, types: 2, coercions: 0, joins: 0/0}
+$c>=_r6yN :: Gender -> Gender -> Bool
+[GblId, Arity=2]
+$c>=_r6yN
+  = \ (a_a65O :: Gender) (b_a65P :: Gender) ->
+      not ($c<_r6yK a_a65O b_a65P)
+
+-- RHS size: {terms: 5, types: 2, coercions: 0, joins: 0/0}
+$c>_r6yO :: Gender -> Gender -> Bool
+[GblId, Arity=2, Caf=NoCafRefs]
+$c>_r6yO
+  = \ (a_a65M :: Gender) (b_a65N :: Gender) -> $c<_r6yK b_a65N a_a65M
+
+Rec {
+-- RHS size: {terms: 9, types: 1, coercions: 0, joins: 0/0}
+Main.$fOrdGender [InlPrag=CONLIKE] :: Ord Gender
+[GblId[DFunId]]
+Main.$fOrdGender
+  = GHC.Classes.C:Ord
+      @ Gender
+      Main.$fEqGender
+      $ccompare_r6yL
+      $c<_r6yK
+      $c<=_r6yM
+      $c>_r6yO
+      $c>=_r6yN
+      $cmax_r6yQ
+      $cmin_r6yP
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$cmin_r6yP :: Gender -> Gender -> Gender
+[GblId]
+$cmin_r6yP = GHC.Classes.$dmmin @ Gender Main.$fOrdGender
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$cmax_r6yQ :: Gender -> Gender -> Gender
+[GblId]
+$cmax_r6yQ = GHC.Classes.$dmmax @ Gender Main.$fOrdGender
+end Rec }
+
+-- RHS size: {terms: 5, types: 5, coercions: 0, joins: 0/0}
+gender :: Person -> Gender
+[GblId[[RecSel]], Arity=1, Caf=NoCafRefs]
+gender
+  = \ (ds_d6wt :: Person) ->
+      case ds_d6wt of { Person ds1_d6wu ds2_d6wv ds3_d6ww -> ds3_d6ww }
+
+-- RHS size: {terms: 5, types: 5, coercions: 0, joins: 0/0}
+weight :: Person -> Double
+[GblId[[RecSel]], Arity=1, Caf=NoCafRefs]
+weight
+  = \ (ds_d6wp :: Person) ->
+      case ds_d6wp of { Person ds1_d6wq ds2_d6wr ds3_d6ws -> ds2_d6wr }
+
+-- RHS size: {terms: 5, types: 5, coercions: 0, joins: 0/0}
+height :: Person -> Double
+[GblId[[RecSel]], Arity=1, Caf=NoCafRefs]
+height
+  = \ (ds_d6wl :: Person) ->
+      case ds_d6wl of { Person ds1_d6wm ds2_d6wn ds3_d6wo -> ds1_d6wm }
+
+-- RHS size: {terms: 6, types: 4, coercions: 0, joins: 0/0}
+$tag2con_3wl2Hu9tNRkC1iZlx7Mycx_r655 :: Int -> Gender
+[GblId, Arity=1, Caf=NoCafRefs]
+$tag2con_3wl2Hu9tNRkC1iZlx7Mycx_r655
+  = \ (ds_d6vV :: Int) ->
+      case ds_d6vV of { GHC.Types.I# a_a65s ->
+      GHC.Prim.tagToEnum# @ Gender a_a65s
+      }
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p :: Int
+[GblId, Caf=NoCafRefs]
+$maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p = GHC.Types.I# 1#
+
+-- RHS size: {terms: 20, types: 3, coercions: 0, joins: 0/0}
+$dIP_r6yR :: GHC.Stack.Types.CallStack
+[GblId]
+$dIP_r6yR
+  = GHC.Stack.Types.pushCallStack
+      (GHC.CString.unpackCString# "error"#,
+       GHC.Stack.Types.SrcLoc
+         (GHC.CString.unpackCString# "main"#)
+         (GHC.CString.unpackCString# "Main"#)
+         (GHC.CString.unpackCString# "example.hs"#)
+         (GHC.Types.I# 5#)
+         (GHC.Types.I# 31#)
+         (GHC.Types.I# 5#)
+         (GHC.Types.I# 35#))
+      GHC.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 39, types: 13, coercions: 4, joins: 0/0}
+$ctoEnum_r6yS :: Int -> Gender
+[GblId, Arity=1]
+$ctoEnum_r6yS
+  = \ (a_a65x :: Int) ->
+      case &&
+             (>= @ Int GHC.Classes.$fOrdInt a_a65x (GHC.Types.I# 0#))
+             (<=
+                @ Int
+                GHC.Classes.$fOrdInt
+                a_a65x
+                $maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p)
+      of {
+        False ->
+          error
+            @ 'GHC.Types.LiftedRep
+            @ Gender
+            ($dIP_r6yR
+             `cast` (Sym
+                       (GHC.Classes.N:IP[0] <"callStack">_N <GHC.Stack.Types.CallStack>_N)
+                     :: (GHC.Stack.Types.CallStack :: *)
+                        ~R#
+                        ((?callStack::GHC.Stack.Types.CallStack) :: Constraint)))
+            (++
+               @ Char
+               (GHC.CString.unpackCString# "toEnum{Gender}: tag ("#)
+               (showsPrec
+                  @ Int
+                  GHC.Show.$fShowInt
+                  (GHC.Types.I# 0#)
+                  a_a65x
+                  (++
+                     @ Char
+                     (GHC.CString.unpackCString#
+                        ") is outside of enumeration's range (0,"#)
+                     (showsPrec
+                        @ Int
+                        GHC.Show.$fShowInt
+                        (GHC.Types.I# 0#)
+                        $maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p
+                        (GHC.CString.unpackCString# ")"#)))));
+        True ->
+          case a_a65x of { GHC.Types.I# a1_a65s ->
+          GHC.Prim.tagToEnum# @ Gender a1_a65s
+          }
+      }
+
+-- RHS size: {terms: 20, types: 3, coercions: 0, joins: 0/0}
+$dIP1_r6yT :: GHC.Stack.Types.CallStack
+[GblId]
+$dIP1_r6yT
+  = GHC.Stack.Types.pushCallStack
+      (GHC.CString.unpackCString# "error"#,
+       GHC.Stack.Types.SrcLoc
+         (GHC.CString.unpackCString# "main"#)
+         (GHC.CString.unpackCString# "Main"#)
+         (GHC.CString.unpackCString# "example.hs"#)
+         (GHC.Types.I# 5#)
+         (GHC.Types.I# 31#)
+         (GHC.Types.I# 5#)
+         (GHC.Types.I# 35#))
+      GHC.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 33, types: 13, coercions: 4, joins: 1/1}
+$csucc_r6yU :: Gender -> Gender
+[GblId, Arity=1]
+$csucc_r6yU
+  = \ (a_a65t :: Gender) ->
+      join {
+        $j_s6xI :: GHC.Prim.Int# -> Gender
+        [LclId[JoinId(1)], Arity=1, Unf=OtherCon []]
+        $j_s6xI (a#_a65u [OS=OneShot] :: GHC.Prim.Int#)
+          = case ==
+                   @ Int
+                   GHC.Classes.$fEqInt
+                   $maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p
+                   (GHC.Types.I# a#_a65u)
+            of {
+              False ->
+                case + @ Int
+                       GHC.Num.$fNumInt
+                       (GHC.Types.I# a#_a65u)
+                       (GHC.Types.I# 1#)
+                of
+                { GHC.Types.I# a1_a65s ->
+                GHC.Prim.tagToEnum# @ Gender a1_a65s
+                };
+              True ->
+                error
+                  @ 'GHC.Types.LiftedRep
+                  @ Gender
+                  ($dIP1_r6yT
+                   `cast` (Sym
+                             (GHC.Classes.N:IP[0] <"callStack">_N <GHC.Stack.Types.CallStack>_N)
+                           :: (GHC.Stack.Types.CallStack :: *)
+                              ~R#
+                              ((?callStack::GHC.Stack.Types.CallStack) :: Constraint)))
+                  (GHC.CString.unpackCString#
+                     "succ{Gender}: tried to take `succ' of last tag in enumeration"#)
+            } } in
+      case a_a65t of {
+        M -> jump $j_s6xI 0#;
+        F -> jump $j_s6xI 1#
+      }
+
+-- RHS size: {terms: 20, types: 3, coercions: 0, joins: 0/0}
+$dIP2_r6yV :: GHC.Stack.Types.CallStack
+[GblId]
+$dIP2_r6yV
+  = GHC.Stack.Types.pushCallStack
+      (GHC.CString.unpackCString# "error"#,
+       GHC.Stack.Types.SrcLoc
+         (GHC.CString.unpackCString# "main"#)
+         (GHC.CString.unpackCString# "Main"#)
+         (GHC.CString.unpackCString# "example.hs"#)
+         (GHC.Types.I# 5#)
+         (GHC.Types.I# 31#)
+         (GHC.Types.I# 5#)
+         (GHC.Types.I# 35#))
+      GHC.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 34, types: 13, coercions: 4, joins: 1/1}
+$cpred_r6yW :: Gender -> Gender
+[GblId, Arity=1]
+$cpred_r6yW
+  = \ (a_a65v :: Gender) ->
+      join {
+        $j_s6xN :: GHC.Prim.Int# -> Gender
+        [LclId[JoinId(1)], Arity=1, Unf=OtherCon []]
+        $j_s6xN (a#_a65w [OS=OneShot] :: GHC.Prim.Int#)
+          = case ==
+                   @ Int GHC.Classes.$fEqInt (GHC.Types.I# 0#) (GHC.Types.I# a#_a65w)
+            of {
+              False ->
+                case + @ Int
+                       GHC.Num.$fNumInt
+                       (GHC.Types.I# a#_a65w)
+                       (GHC.Types.I# -1#)
+                of
+                { GHC.Types.I# a1_a65s ->
+                GHC.Prim.tagToEnum# @ Gender a1_a65s
+                };
+              True ->
+                error
+                  @ 'GHC.Types.LiftedRep
+                  @ Gender
+                  ($dIP2_r6yV
+                   `cast` (Sym
+                             (GHC.Classes.N:IP[0] <"callStack">_N <GHC.Stack.Types.CallStack>_N)
+                           :: (GHC.Stack.Types.CallStack :: *)
+                              ~R#
+                              ((?callStack::GHC.Stack.Types.CallStack) :: Constraint)))
+                  (GHC.CString.unpackCString#
+                     "pred{Gender}: tried to take `pred' of first tag in enumeration"#)
+            } } in
+      case a_a65v of {
+        M -> jump $j_s6xN 0#;
+        F -> jump $j_s6xN 1#
+      }
+
+-- RHS size: {terms: 9, types: 2, coercions: 0, joins: 0/0}
+$cfromEnum_r6yX :: Gender -> Int
+[GblId, Arity=1, Caf=NoCafRefs]
+$cfromEnum_r6yX
+  = \ (a_a65E :: Gender) ->
+      case a_a65E of {
+        M -> GHC.Types.I# 0#;
+        F -> GHC.Types.I# 1#
+      }
+
+-- RHS size: {terms: 19, types: 8, coercions: 0, joins: 0/0}
+$cenumFrom_r6yY :: Gender -> [Gender]
+[GblId, Arity=1]
+$cenumFrom_r6yY
+  = \ (a_a65y :: Gender) ->
+      case a_a65y of {
+        M ->
+          map
+            @ Int
+            @ Gender
+            $tag2con_3wl2Hu9tNRkC1iZlx7Mycx_r655
+            (enumFromTo
+               @ Int
+               GHC.Enum.$fEnumInt
+               (GHC.Types.I# 0#)
+               $maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p);
+        F ->
+          map
+            @ Int
+            @ Gender
+            $tag2con_3wl2Hu9tNRkC1iZlx7Mycx_r655
+            (enumFromTo
+               @ Int
+               GHC.Enum.$fEnumInt
+               (GHC.Types.I# 1#)
+               $maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p)
+      }
+
+-- RHS size: {terms: 42, types: 17, coercions: 0, joins: 2/2}
+$cenumFromThen_r6yZ :: Gender -> Gender -> [Gender]
+[GblId, Arity=2]
+$cenumFromThen_r6yZ
+  = \ (a_a65A :: Gender) (b_a65B :: Gender) ->
+      join {
+        $j_s6xU :: GHC.Prim.Int# -> [Gender]
+        [LclId[JoinId(1)], Arity=1, Unf=OtherCon []]
+        $j_s6xU (a#_a65C [OS=OneShot] :: GHC.Prim.Int#)
+          = join {
+              $j1_s6xS :: GHC.Prim.Int# -> [Gender]
+              [LclId[JoinId(1)], Arity=1, Unf=OtherCon []]
+              $j1_s6xS (b#_a65D [OS=OneShot] :: GHC.Prim.Int#)
+                = map
+                    @ Int
+                    @ Gender
+                    $tag2con_3wl2Hu9tNRkC1iZlx7Mycx_r655
+                    (enumFromThenTo
+                       @ Int
+                       GHC.Enum.$fEnumInt
+                       (GHC.Types.I# a#_a65C)
+                       (GHC.Types.I# b#_a65D)
+                       (case > @ Int
+                               GHC.Classes.$fOrdInt
+                               (GHC.Types.I# a#_a65C)
+                               (GHC.Types.I# b#_a65D)
+                        of {
+                          False -> $maxtag_3wl2Hu9tNRkC1iZlx7Mycx_r65p;
+                          True -> GHC.Types.I# 0#
+                        })) } in
+            case b_a65B of {
+              M -> jump $j1_s6xS 0#;
+              F -> jump $j1_s6xS 1#
+            } } in
+      case a_a65A of {
+        M -> jump $j_s6xU 0#;
+        F -> jump $j_s6xU 1#
+      }
+
+Rec {
+-- RHS size: {terms: 9, types: 1, coercions: 0, joins: 0/0}
+Main.$fEnumGender [InlPrag=CONLIKE] :: Enum Gender
+[GblId[DFunId]]
+Main.$fEnumGender
+  = GHC.Enum.C:Enum
+      @ Gender
+      $csucc_r6yU
+      $cpred_r6yW
+      $ctoEnum_r6yS
+      $cfromEnum_r6yX
+      $cenumFrom_r6yY
+      $cenumFromThen_r6yZ
+      $cenumFromTo_r6z1
+      $cenumFromThenTo_r6z0
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$cenumFromThenTo_r6z0 :: Gender -> Gender -> Gender -> [Gender]
+[GblId]
+$cenumFromThenTo_r6z0
+  = GHC.Enum.$dmenumFromThenTo @ Gender Main.$fEnumGender
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+$cenumFromTo_r6z1 :: Gender -> Gender -> [Gender]
+[GblId]
+$cenumFromTo_r6z1
+  = GHC.Enum.$dmenumFromTo @ Gender Main.$fEnumGender
+end Rec }
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule1_r6z2 :: GHC.Prim.Addr#
+[GblId, Caf=NoCafRefs]
+$trModule1_r6z2 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule2_r6z3 :: GHC.Types.TrName
+[GblId, Caf=NoCafRefs]
+$trModule2_r6z3 = GHC.Types.TrNameS $trModule1_r6z2
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule3_r6z4 :: GHC.Prim.Addr#
+[GblId, Caf=NoCafRefs]
+$trModule3_r6z4 = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule4_r6z5 :: GHC.Types.TrName
+[GblId, Caf=NoCafRefs]
+$trModule4_r6z5 = GHC.Types.TrNameS $trModule3_r6z4
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Main.$trModule :: GHC.Types.Module
+[GblId, Caf=NoCafRefs]
+Main.$trModule = GHC.Types.Module $trModule2_r6z3 $trModule4_r6z5
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep_r6z6 :: GHC.Types.KindRep
+[GblId]
+$krep_r6z6
+  = GHC.Types.KindRepTyConApp
+      GHC.Types.$tcDouble (GHC.Types.[] @ GHC.Types.KindRep)
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcGender1_r6z7 :: GHC.Prim.Addr#
+[GblId, Caf=NoCafRefs]
+$tcGender1_r6z7 = "Gender"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcGender2_r6z8 :: GHC.Types.TrName
+[GblId, Caf=NoCafRefs]
+$tcGender2_r6z8 = GHC.Types.TrNameS $tcGender1_r6z7
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcGender :: GHC.Types.TyCon
+[GblId]
+Main.$tcGender
+  = GHC.Types.TyCon
+      3493401709015755305##
+      14790052897006053540##
+      Main.$trModule
+      $tcGender2_r6z8
+      0#
+      GHC.Types.krep$*
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep1_r6z9 :: GHC.Types.KindRep
+[GblId]
+$krep1_r6z9
+  = GHC.Types.KindRepTyConApp
+      Main.$tcGender (GHC.Types.[] @ GHC.Types.KindRep)
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'M1_r6za :: GHC.Prim.Addr#
+[GblId, Caf=NoCafRefs]
+$tc'M1_r6za = "'M"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'M2_r6zb :: GHC.Types.TrName
+[GblId, Caf=NoCafRefs]
+$tc'M2_r6zb = GHC.Types.TrNameS $tc'M1_r6za
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tc'M :: GHC.Types.TyCon
+[GblId]
+Main.$tc'M
+  = GHC.Types.TyCon
+      17785842457694484716##
+      136877336669905235##
+      Main.$trModule
+      $tc'M2_r6zb
+      0#
+      $krep1_r6z9
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'F1_r6zc :: GHC.Prim.Addr#
+[GblId, Caf=NoCafRefs]
+$tc'F1_r6zc = "'F"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'F2_r6zd :: GHC.Types.TrName
+[GblId, Caf=NoCafRefs]
+$tc'F2_r6zd = GHC.Types.TrNameS $tc'F1_r6zc
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tc'F :: GHC.Types.TyCon
+[GblId]
+Main.$tc'F
+  = GHC.Types.TyCon
+      14632208746320539249##
+      2459861030131864685##
+      Main.$trModule
+      $tc'F2_r6zd
+      0#
+      $krep1_r6z9
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tcPerson1_r6ze :: GHC.Prim.Addr#
+[GblId, Caf=NoCafRefs]
+$tcPerson1_r6ze = "Person"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tcPerson2_r6zf :: GHC.Types.TrName
+[GblId, Caf=NoCafRefs]
+$tcPerson2_r6zf = GHC.Types.TrNameS $tcPerson1_r6ze
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tcPerson :: GHC.Types.TyCon
+[GblId]
+Main.$tcPerson
+  = GHC.Types.TyCon
+      16014444715325524089##
+      17456607533897091165##
+      Main.$trModule
+      $tcPerson2_r6zf
+      0#
+      GHC.Types.krep$*
+
+-- RHS size: {terms: 3, types: 1, coercions: 0, joins: 0/0}
+$krep2_r6zg :: GHC.Types.KindRep
+[GblId]
+$krep2_r6zg
+  = GHC.Types.KindRepTyConApp
+      Main.$tcPerson (GHC.Types.[] @ GHC.Types.KindRep)
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep3_r6zh :: GHC.Types.KindRep
+[GblId]
+$krep3_r6zh = GHC.Types.KindRepFun $krep1_r6z9 $krep2_r6zg
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep4_r6zi :: GHC.Types.KindRep
+[GblId]
+$krep4_r6zi = GHC.Types.KindRepFun $krep_r6z6 $krep3_r6zh
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+$krep5_r6zj :: GHC.Types.KindRep
+[GblId]
+$krep5_r6zj = GHC.Types.KindRepFun $krep_r6z6 $krep4_r6zi
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$tc'Person1_r6zk :: GHC.Prim.Addr#
+[GblId, Caf=NoCafRefs]
+$tc'Person1_r6zk = "'Person"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$tc'Person2_r6zl :: GHC.Types.TrName
+[GblId, Caf=NoCafRefs]
+$tc'Person2_r6zl = GHC.Types.TrNameS $tc'Person1_r6zk
+
+-- RHS size: {terms: 7, types: 0, coercions: 0, joins: 0/0}
+Main.$tc'Person :: GHC.Types.TyCon
+[GblId]
+Main.$tc'Person
+  = GHC.Types.TyCon
+      9426666986912956455##
+      3294253457948602618##
+      Main.$trModule
+      $tc'Person2_r6zl
+      0#
+      $krep5_r6zj
+
+-- RHS size: {terms: 110, types: 139, coercions: 0, joins: 0/5}
+main :: IO ()
+[GblId]
+main
+  = mapM_
+      @ []
+      @ IO
+      @ (Double, Double)
+      @ ()
+      Data.Foldable.$fFoldable[]
+      GHC.Base.$fMonadIO
+      (print
+         @ (Double, Double)
+         (GHC.Show.$fShow(,)
+            @ Double @ Double GHC.Float.$fShowDouble GHC.Float.$fShowDouble))
+      (runJob
+         @ []
+         @ Person
+         @ (Double, Double)
+         GHC.Base.$fFunctor[]
+         (let {
+            $dMonad_a6m4 :: Monad (Job [] Person)
+            [LclId]
+            $dMonad_a6m4
+              = Job.$fMonadJob @ [] @ Person GHC.Base.$fFunctor[] } in
+          let {
+            $dFoldable_a6m0 :: Foldable []
+            [LclId]
+            $dFoldable_a6m0
+              = Data.Traversable.$p2Traversable
+                  @ [] Data.Traversable.$fTraversable[] } in
+          let {
+            $dFunctor_a6vx :: Functor []
+            [LclId]
+            $dFunctor_a6vx
+              = Data.Traversable.$p1Traversable
+                  @ [] Data.Traversable.$fTraversable[] } in
+          let {
+            $dMonad1_a6lE :: Monad (Job [] Person)
+            [LclId]
+            $dMonad1_a6lE = Job.$fMonadJob @ [] @ Person $dFunctor_a6vx } in
+          >>=
+            @ (Job [] Person)
+            $dMonad1_a6lE
+            @ Double
+            @ (Double, Double)
+            (col @ Person @ Double @ [] height)
+            (\ (h_a5Qu :: Double) ->
+               >>=
+                 @ (Job [] Person)
+                 $dMonad1_a6lE
+                 @ Double
+                 @ (Double, Double)
+                 (col @ Person @ Double @ [] weight)
+                 (\ (w_a5Qv :: Double) ->
+                    >>=
+                      @ (Job [] Person)
+                      $dMonad1_a6lE
+                      @ Double
+                      @ (Double, Double)
+                      (withGroups
+                         @ []
+                         @ Gender
+                         @ Person
+                         @ Double
+                         $dFoldable_a6m0
+                         Main.$fEnumGender
+                         gender
+                         (>>=
+                            @ (Job [] Person)
+                            $dMonad_a6m4
+                            @ [Person]
+                            @ Double
+                            (everything @ [] @ Person)
+                            (\ (ev_a5Qw :: [Person]) ->
+                               . @ Double
+                                 @ (Job [] Person Double)
+                                 @ [Person]
+                                 (return @ (Job [] Person) $dMonad_a6m4 @ Double)
+                                 (. @ [Double]
+                                    @ Double
+                                    @ [Person]
+                                    (let {
+                                       $dNum_a6kz :: Num Double
+                                       [LclId]
+                                       $dNum_a6kz
+                                         = GHC.Real.$p1Fractional
+                                             @ Double GHC.Float.$fFractionalDouble } in
+                                     \ (xs_a5Zc :: [Double]) ->
+                                       / @ Double
+                                         GHC.Float.$fFractionalDouble
+                                         (sum
+                                            @ []
+                                            Data.Foldable.$fFoldable[]
+                                            @ Double
+                                            $dNum_a6kz
+                                            xs_a5Zc)
+                                         (fromIntegral
+                                            @ Int
+                                            @ Double
+                                            GHC.Real.$fIntegralInt
+                                            $dNum_a6kz
+                                            (length
+                                               @ [] Data.Foldable.$fFoldable[] @ Double xs_a5Zc)))
+                                    (fmap @ [] GHC.Base.$fFunctor[] @ Person @ Double weight))
+                                 ev_a5Qw)))
+                      (\ (genderAvgWeights_a5Qx :: Double) ->
+                         return
+                           @ (Job [] Person)
+                           $dMonad1_a6lE
+                           @ (Double, Double)
+                           (h_a5Qu,
+                            / @ Double
+                              GHC.Float.$fFractionalDouble
+                              w_a5Qv
+                              genderAvgWeights_a5Qx)))))
+         (>>=
+            @ []
+            GHC.Base.$fMonad[]
+            @ Double
+            @ Person
+            (enumFromTo
+               @ Double
+               GHC.Float.$fEnumDouble
+               (GHC.Types.D# 1.0##)
+               (GHC.Types.D# 100.0##))
+            (\ (h_a5Qr :: Double) ->
+               >>=
+                 @ []
+                 GHC.Base.$fMonad[]
+                 @ Double
+                 @ Person
+                 (enumFromTo
+                    @ Double
+                    GHC.Float.$fEnumDouble
+                    (GHC.Types.D# 1.0##)
+                    (GHC.Types.D# 100.0##))
+                 (\ (w_a5Qs :: Double) ->
+                    >>=
+                      @ []
+                      GHC.Base.$fMonad[]
+                      @ Gender
+                      @ Person
+                      (GHC.Types.:
+                         @ Gender
+                         Main.M
+                         (GHC.Types.:
+                            @ Gender
+                            Main.F
+                            (GHC.Types.:
+                               @ Gender
+                               Main.F
+                               (GHC.Types.: @ Gender Main.M (GHC.Types.[] @ Gender)))))
+                      (\ (g_a5Qt :: Gender) ->
+                         return
+                           @ []
+                           GHC.Base.$fMonad[]
+                           @ Person
+                           (Main.Person h_a5Qr w_a5Qs g_a5Qt))))))
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+:Main.main :: IO ()
+[GblId]
+:Main.main = GHC.TopHandler.runMainIO @ () main
+
+
