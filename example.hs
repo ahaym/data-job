@@ -50,8 +50,8 @@ heightVsWOGM = do
     -- Return data in the format you want it output.
     return (height person, isTall, genderAvgWeights, gn)
 
--- I wrote it specialized to Lists,
--- but any Traversable + Alternative works.
+-- I wrote it specialized to Lists, but it can probably 
+-- be rewritten towork with any Traversable + Alternative.
 -- Vectors are super slow due to repeated concats.
 main = mapM_ print res
     where res = runJob heightVsWOGM people
@@ -65,7 +65,7 @@ people = [Person 180 72 M, Person 160 50 F, Person 175 60 F, Person 200 100 M, P
 -- Not fast, but surprisingly not slow!
 -- Processes the below in 1.722s with -O2.
 main' = mapM_ print $ take 32 res
-    where res = runJob heightVsWOGM people
+    where res = runJob heightVsWOGM people2
 
 people2 :: [Person]
 people2 = do
